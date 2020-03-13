@@ -1,0 +1,24 @@
+version: "3.5"
+
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5433:5432
+
+  airflow_scheduler:
+    image: air
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh
+    environment:
+      UPGRADE_DB: "true"
+      SLEEP: 3
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres:5432/postgres
+    command: airflow scheduler
