@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3.7"
 
 services:
   postgres:
@@ -15,8 +15,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgres
-    volumes:
-      - ./entrypoint.sh:/entrypoint.sh
+    init: true
     environment:
       UPGRADE_DB: "true"
       SLEEP: 3
