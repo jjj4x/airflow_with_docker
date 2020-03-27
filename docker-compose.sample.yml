@@ -1,0 +1,54 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:alpine
+    env_file:
+      - ./env_defaults
+    ports:
+      - 5433:5432
+    networks:
+      - airflow_light_net
+
+  airflow_scheduler:
+    image: jjjax/airflow-docker-light
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    init: true
+    volumes:
+      - airflow:/opt/airflow
+    networks:
+      - airflow_light_net
+    environment:
+      UPGRADE_DB: "true"
+      SLEEP: 3
+    env_file:
+      - ./env_defaults
+    command: airflow scheduler
+
+  airflow_webserver:
+    image: airflow-docker-light-test
+    depends_on:
+      - airflow_scheduler
+    init: true
+    volumes:
+      - airflow:/opt/airflow
+    networks:
+      - airflow_light_net
+    ports:
+      - 8080:8080
+    environment:
+      SLEEP: 6
+    env_file:
+      - ./env_defaults
+    command: airflow webserver
+
+volumes:
+  airflow:
+
+networks:
+  airflow_light_net:
+    name: "airflow_light_net"

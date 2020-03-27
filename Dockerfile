@@ -1,5 +1,5 @@
 # VERSION 1.10.9
-# AUTHOR: Maxim Tarasishin
+# AUTHOR: Maxim Preobrazhensky
 # DESCRIPTION: Lightweight Airflow Container
 # SOURCE: https://github.com/jjj4x/airflow_with_docker
 FROM python:3.7-alpine
@@ -7,33 +7,29 @@ LABEL maintainer="max.preobrazhensky@gmail.com"
 
 
 # *****************************BUILD ARGS AND NOTES*****************************
-# Build without docker-compose:
-# docker build -t air -f Dockerfile .
+# docker build -t jjjax/airflow-docker-light -f Dockerfile .
 
-# Build with docker-compose:
-#
-
-# For example: docker-compose build --build-arg AIRFLOW_VERSION=1.10.9
+# For example: docker build --build-arg AIRFLOW_VERSION=1.10.9 -t jjjax/airflow-docker-light -f Dockerfile .
 ARG AIRFLOW_VERSION=1.10.9
 
-# For example: docker-compose build --build-arg AIRFLOW_HOME=/airflow
+# For example: docker build --build-arg AIRFLOW_HOME=/airflow -t jjjax/airflow-docker-light -f Dockerfile .
 ARG AIRFLOW_HOME=/opt/airflow
 
-# For example: docker-compose build --build-arg AIRFLOW__CORE__FERNET_KEY=<your value>
+# For example: docker build --build-arg AIRFLOW__CORE__FERNET_KEY=<your value> -t jjjax/airflow-docker-light -f Dockerfile .
 # If provided, the entrypoint.sh will use the value specified at build.
 ARG AIRFLOW__CORE__FERNET_KEY=""
 
-# For example: docker-compose build --build-arg AIRFLOW_DEPS=hdfs,kerberos
+# For example: docker build --build-arg AIRFLOW_DEPS=hdfs,kerberos -t jjjax/airflow-docker-light -f Dockerfile .
 ARG AIRFLOW_DEPS=""
 
-# For example: docker-compose build --build-arg PYTHON_DEPS=requirements.txt
+# For example: docker build --build-arg PYTHON_DEPS=requirements.txt -t jjjax/airflow-docker-light -f Dockerfile .
 # The file should be placed in right into the Docker Context.
 ARG PYTHON_DEPS="requirements.sample.txt"
 
-# For example: docker-compose build --build-arg LINUX_DEPS="musl-dev gcc"
-ARG LINUX_DEPS=""
+# For example: docker build --build-arg LINUX_DEPS="musl-dev gcc" -t jjjax/airflow-docker-light -f Dockerfile .
+ARG LINUX_DEPS="bash"
 
-# For example: docker-compose build --build-arg TIMEZONE="Europe/Moscow"
+# For example: docker build --build-arg TIMEZONE="Europe/Moscow" -t jjjax/airflow-docker-light -f Dockerfile .
 ARG TIMEZONE=UTC
 # ******************************************************************************
 
