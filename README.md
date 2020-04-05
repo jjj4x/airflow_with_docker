@@ -111,7 +111,7 @@ docker-compose -f docker-compose.test.yml down
 
 ## Development and Exploration
 
-Build the test image, like in [Auto Testing](#Auto Testing):
+Build the test image, like in [Auto Testing](#auto-testing):
 ```shell script
 docker-compose -f docker-compose.test.yml build
 ```
