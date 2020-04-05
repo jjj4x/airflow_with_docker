@@ -1,11 +1,9 @@
-Lightweight Docker Airflow
---------------------------
+# Lightweight Docker Airflow
 
 A simple Airflow \[Alpine Linux\] image with as little magic as possible.
 
 
-Outline
--------
+# Outline
 
 * [License](#License)
 * [Notes and Overview](#Notes and Overview)
@@ -16,15 +14,13 @@ Outline
   * [Development and Exploration](#Development and Exploration)
 
 
-License
--------
+# License
 
 This project is licensed under the Apache 2.0 Licence. See [LICENCE](./LICENSE)
 for more information.
 
 
-Notes and Overview
-------------------
+# Notes and Overview
 
 The image is build mainly for learning purposes and  depends on
 [Python Alpine Linux](https://hub.docker.com/_/python).
@@ -43,8 +39,7 @@ Some notes:
   setup will be non-trivial.
 
 
-Usage
------
+# Usage
 
 ## Building and Running
 
@@ -133,16 +128,14 @@ docker-compose -f docker-compose.test.yml down
 ```
 
 
-Authors
--------
+# Authors
 
 I've (max.preobrazhensky@gmail.com) made it just for fun: to learn and explore
 the **Airflow** hands-on. Thanks to Matthieu "Puckel_" Roisil
 (https://github.com/puckel/docker-airflow/tree/master) for a starting point.
 
 
-Backlog
--------
+# Backlog
 - [ ] Decouple from PostgreSQL. It should get by SQLite and SequentialExecutor by default
 
 - [ ] Provide an easier way to turn-off the encryption (AIRFLOW__CORE__FERNET_KEY).
