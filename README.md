@@ -61,17 +61,17 @@ docker-compose build
 docker-compose run
 ```
 
-Build Arguments table:
+**Build Arguments Table**:
 
-| Argument                  | Default                 | Comment
-| ------------------------- | ----------------------- | -----------
-| AIRFLOW_VERSION           | 1.10.9                  |
-| AIRFLOW_HOME              | /opt/airflow            | If modified, don't forget to sync your docker-compose.yml and other stuff.
-| AIRFLOW__CORE__FERNET_KEY | ""                      | If provided, the entrypoint.sh will use the value as is; else, the value from ${AIRFLOW_HOME}/fernet.key will be used.
-| AIRFLOW_DEPS              | ""                      | Provided as "mysql,gcp,hdfs"
-| PYTHON_DEPS               | requirements.sample.txt | The default file is empty; you may put a custom file into src/ and it will be installed with pip
-| LINUX_DEPS                | bash                    | Provided as "bash,gcc,make"
-| TIMEZONE                  | UTC                     | For example, "Europe/Moscow"
+| Argument                  | Default                     | Comment
+| ------------------------- | --------------------------- | -------
+| AIRFLOW_VERSION           | 1.10.9                      | The version will be installed at build time
+| AIRFLOW_HOME              | /opt/airflow                | If modified, don't forget to sync your docker-compose.yml and other stuff.
+| AIRFLOW__CORE__FERNET_KEY | ""                          | If provided, the entrypoint.sh will use the value as is; else, the value from ${AIRFLOW_HOME}/fernet.key will be used.
+| AIRFLOW_DEPS              | ""                          | Provided as "mysql,gcp,hdfs"
+| PYTHON_DEPS               | src/requirements.sample.txt | The default file is empty; you may put a custom file into src/ and it will be installed with pip
+| LINUX_DEPS                | bash                        | Provided as "bash,gcc,make"
+| TIMEZONE                  | UTC                         | For example, "Europe/Moscow"
 
 
 ## Extending
