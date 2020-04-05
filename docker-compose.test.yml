@@ -1,10 +1,11 @@
+# The file can be used for auto-testing and local development.
 version: "3.7"
 
 services:
   postgres:
     image: postgres:alpine
     env_file:
-      - ./env_defaults
+      - src/env_defaults
     ports:
       - 41756:5432
     networks:
@@ -12,40 +13,44 @@ services:
 
   airflow_scheduler:
     image: jjjax/airflow-docker-light-test
-    env_file:
-      - ./env_defaults
-    environment:
-      UPGRADE_DB: "true"
-      SLEEP: 2
-    depends_on:
-      - postgres
-    volumes:
-      - ./tests:/tests
-      - ./dags:/opt/airflow/dags
-    networks:
-      - airflow_tests_net
-    command: airflow scheduler
-
-  airflow_tests:
-    image: jjjax/airflow-docker-light-test
     build:
       args:
         PYTHON_DEPS: requirements.test.txt
       context: .
       dockerfile: Dockerfile
-    env_file:
-      - ./env_defaults
+    depends_on:
+      - postgres
+    volumes:
+      - airflow:/opt/airflow
+      - ./tests:/tests
+      - ./dags:/opt/airflow/dags
+    networks:
+      - airflow_tests_net
     environment:
-      SLEEP: 3
+      UPGRADE_DB: "true"
+      SLEEP: 2
+    env_file:
+      - src/env_defaults
+    command: airflow scheduler
+
+  airflow_tests:
+    image: jjjax/airflow-docker-light-test
     depends_on:
       - airflow_scheduler
     volumes:
+      - airflow:/opt/airflow
       - ./tests:/tests
       - ./dags:/opt/airflow/dags
-      - ./some:/opt/airflow
     networks:
       - airflow_tests_net
-    command: pytest -c /tests/pytest.ini -s -v /tests/test_all.py::test_dag_complex
+    environment:
+      SLEEP: 6
+    env_file:
+      - src/env_defaults
+    command: pytest -c /tests/pytest.ini -s -v
+
+volumes:
+  airflow:
 
 networks:
   airflow_tests_net:

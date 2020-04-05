@@ -6,30 +6,13 @@ FROM python:3.7-alpine
 LABEL maintainer="max.preobrazhensky@gmail.com"
 
 
-# *****************************BUILD ARGS AND NOTES*****************************
-# docker build -t jjjax/airflow-docker-light -f Dockerfile .
-
-# For example: docker build --build-arg AIRFLOW_VERSION=1.10.9 -t jjjax/airflow-docker-light -f Dockerfile .
+# **********************************BUILD ARGS**********************************
 ARG AIRFLOW_VERSION=1.10.9
-
-# For example: docker build --build-arg AIRFLOW_HOME=/airflow -t jjjax/airflow-docker-light -f Dockerfile .
 ARG AIRFLOW_HOME=/opt/airflow
-
-# For example: docker build --build-arg AIRFLOW__CORE__FERNET_KEY=<your value> -t jjjax/airflow-docker-light -f Dockerfile .
-# If provided, the entrypoint.sh will use the value specified at build.
 ARG AIRFLOW__CORE__FERNET_KEY=""
-
-# For example: docker build --build-arg AIRFLOW_DEPS=hdfs,kerberos -t jjjax/airflow-docker-light -f Dockerfile .
 ARG AIRFLOW_DEPS=""
-
-# For example: docker build --build-arg PYTHON_DEPS=requirements.txt -t jjjax/airflow-docker-light -f Dockerfile .
-# The file should be placed in right into the Docker Context.
 ARG PYTHON_DEPS="requirements.sample.txt"
-
-# For example: docker build --build-arg LINUX_DEPS="musl-dev gcc" -t jjjax/airflow-docker-light -f Dockerfile .
 ARG LINUX_DEPS="bash"
-
-# For example: docker build --build-arg TIMEZONE="Europe/Moscow" -t jjjax/airflow-docker-light -f Dockerfile .
 ARG TIMEZONE=UTC
 # ******************************************************************************
 
@@ -44,10 +27,10 @@ ENV \
 
 # The entrypoint.sh will be moved into / at the end of RUN directive.
 COPY \
-    entrypoint.sh \
-    ${PYTHON_DEPS} \
+    src/entrypoint.sh \
+    src/${PYTHON_DEPS} \
     ${AIRFLOW_HOME}/
-# Other files can be provided via docker-compose files, etc.
+# Other files, like dags or tests, can be provided via docker-compose files, etc.
 
 RUN \
     echo "**************************SETUP TIMEZONE**************************" \
@@ -73,7 +56,7 @@ RUN \
         apache-airflow[crypto,postgres${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && echo "**********************CLEANUP DEPENDENCES**********************" \
     && apk del build-deps \
-    && rm -rf /root/.cache/* \
+    && rm -rf /root/.cache/* /tmp/* \
     && echo "************************SETUP USERSPACE************************" \
     && addgroup -S airflow \
     && adduser -S -D -H -G airflow -h ${AIRFLOW_HOME} airflow \

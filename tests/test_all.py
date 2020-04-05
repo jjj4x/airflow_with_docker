@@ -9,6 +9,7 @@ def test_main_conf(main_conf):
 
 
 def test_connections(main_conf):
+    _ = main_conf
     with db.create_session() as session:
         https_conn, postgres_conn = session.query(models.Connection).all()
         assert https_conn.get_uri() == 'https://www.google.com:443?param=1&option=2'
@@ -16,6 +17,7 @@ def test_connections(main_conf):
 
 
 def test_variables(main_conf):
+    _ = main_conf
     var1 = models.Variable.get('key')
     var2 = models.Variable.get('json_key', deserialize_json=True)
 
