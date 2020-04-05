@@ -1,17 +1,17 @@
 # Lightweight Docker Airflow
 
-A simple Airflow \[Alpine Linux\] image with as little magic as possible.
+A simple **Apache Airflow** \[Alpine Linux\] **Docker** image with as little magic as possible.
 
 
 # Outline
 
-* [License](#License)
-* [Notes and Overview](#Notes and Overview)
-* [Usage](#Usage)
-  * [Building and Running](#Building and Running)
-  * [Extending](#Extending)
-  * [Auto Testing](#Auto Testing)
-  * [Development and Exploration](#Development and Exploration)
+* [License](#license)
+* [Notes and Overview](#notes-and-overview)
+* [Usage](#usage)
+  * [Building and Running](#building-and-running)
+  * [Extending](#extending)
+  * [Auto Testing](#auto-testing)
+  * [Development and Exploration](#development-and-exploration)
 
 
 # License
