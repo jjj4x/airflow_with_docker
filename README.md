@@ -16,14 +16,14 @@ A simple **Apache Airflow** \[Alpine Linux\] **Docker** image with as little mag
 * [Backlog](#backlog)
 
 # License
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 This project is licensed under the Apache 2.0 Licence. See [LICENCE](./LICENSE)
 for more information.
 
 
 # Notes and Overview
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 The image is build mainly for learning purposes and  depends on
 [Python Alpine Linux](https://hub.docker.com/_/python).
@@ -43,10 +43,10 @@ Some notes:
 
 
 # Usage
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 ## Building and Running
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 To build it without *docker-compose*:
 ```shell script
@@ -80,7 +80,7 @@ docker-compose run
 
 
 ## Extending
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 There is almost zero magic in the [entrypoint.sh](src/entrypoint.sh), so you may
 want to keep it. It has only three actions:
@@ -101,7 +101,7 @@ share their **AIRFLOW_HOME**, if you want to leverage an auto-generated
 
 
 ## Auto Testing
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 Build the test image which differs by **PYTHON_DEPS** (the requirements
 will be installed from [requirements.test.txt](src/requirements.test.txt)):
@@ -117,7 +117,7 @@ docker-compose -f docker-compose.test.yml down
 
 
 ## Development and Exploration
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 Build the test image, like in [Auto Testing](#auto-testing):
 ```shell script
@@ -137,7 +137,7 @@ docker-compose -f docker-compose.test.yml down
 
 
 # Authors
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 I've (max.preobrazhensky@gmail.com) made it just for fun: to learn and explore
 the **Airflow** hands-on. Thanks to Matthieu "Puckel_" Roisil
@@ -145,7 +145,7 @@ the **Airflow** hands-on. Thanks to Matthieu "Puckel_" Roisil
 
 
 # Backlog
-([-> Outline](#outline))
+[-> Outline](#outline)
 
 - [ ] Decouple from PostgreSQL. It should get by SQLite and SequentialExecutor by default
 
