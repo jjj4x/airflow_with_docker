@@ -56,7 +56,7 @@ RUN \
         apache-airflow[crypto,postgres${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && echo "**********************CLEANUP DEPENDENCES**********************" \
     && apk del build-deps \
-    && rm -rf /root/.cache/* /tmp/* \
+    && rm -rf /root/.cache/* /tmp/* /var/tmp/* \
     && echo "************************SETUP USERSPACE************************" \
     && addgroup -S airflow \
     && adduser -S -D -H -G airflow -h ${AIRFLOW_HOME} airflow \
