@@ -2,5 +2,21 @@ arch: amd64
 os: linux
 dist: bionic
 
+services:
+  - docker
+
+branches:
+  only:
+  - master
+  - dev
+
 language: python
+jobs:
+  include:
+    - name: 'Build Image'
+      script: docker-compose -f docker-compose.sample.yml build
+
+    - name: 'Build Test Image'
+      script: docker-compose -f docker-compose.test.yml build
+
 python: 3.7
