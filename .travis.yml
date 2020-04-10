@@ -14,9 +14,21 @@ language: python
 jobs:
   include:
     - name: 'Build Image'
+      stage: build
       script: docker-compose -f docker-compose.sample.yml build
 
     - name: 'Build Test Image'
+      stage: build
       script: docker-compose -f docker-compose.test.yml build
+
+    - name: 'Test'
+      stage: test
+      script:
+        - docker-compose -f docker-compose.test.yml run --rm airflow_tests
+        - docker-compose -f docker-compose.test.yml down
+
+    - name: 'Deploy
+      stage: deploy
+      script: echo Deployed
 
 python: 3.7
