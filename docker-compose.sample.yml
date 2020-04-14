@@ -24,9 +24,9 @@ services:
       - airflow_light_net
     environment:
       UPGRADE_DB: "true"
-      SLEEP: 2
     env_file:
       - src/env_defaults
+    restart: on-failure
     command: airflow scheduler
 
   airflow_webserver:
@@ -39,10 +39,9 @@ services:
       - airflow_light_net
     ports:
       - 8080:8080
-    environment:
-      SLEEP: 6
     env_file:
       - src/env_defaults
+    restart: on-failure
     command: airflow webserver
 
 volumes:

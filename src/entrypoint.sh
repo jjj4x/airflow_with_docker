@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# The ability to wait for some other services.
-if [ -n "${SLEEP}" ] && [ "${SLEEP}" -gt 0 ]; then
-  echo "Sleeping for ${SLEEP} seconds."
-  sleep "${SLEEP}"
-fi
-
 # 1. If AIRFLOW__CORE__FERNET_KEY was set manually -> use it.
 # 2. If ${AIRFLOW_HOME}/fernet.key file is present -> use it.
 # 3. Else, create ${AIRFLOW_HOME}/fernet.key and.. -> use it.

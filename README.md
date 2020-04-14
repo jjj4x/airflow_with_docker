@@ -28,7 +28,7 @@ for more information.
 The image is build mainly for learning purposes and  depends on
 [Python Alpine Linux](https://hub.docker.com/_/python).
 
-The versioning scheme is *\<Native Airflow Version\>\[-\<Optional Numeric Suffix\>\]*.
+The versioning scheme is **\<Native Airflow Version\>\[-\<Optional Numeric Suffix\>\]**.
 Like, "1.10.9" or "2.0.0-2".
 
 Some notes:
@@ -48,7 +48,7 @@ Some notes:
 ## Building and Running
 [-> Outline](#outline)
 
-To build it without *docker-compose*:
+To build it without **docker-compose**:
 ```shell script
 docker build -t jjjax/airflow-docker-light -f Dockerfile .
 ```
@@ -83,13 +83,12 @@ docker-compose run
 [-> Outline](#outline)
 
 There is almost zero magic in the [entrypoint.sh](src/entrypoint.sh), so you may
-want to keep it. It has only three actions:
-1. If **SLEEP** env is set, it will sleep for a specified amount of seconds.
-2. If **AIRFLOW__CORE__FERNET_KEY** env is set, it will be used as is. Else,
+want to keep it. It has only two actions:
+1. If **AIRFLOW__CORE__FERNET_KEY** env is set, it will be used as is. Else,
    the value from **AIRFLOW_HOME/fernet.key** will be used. That's a reason
    why you should share the **AIRFLOW_HOME** via a volume for multiple airflow
    containers.
-3. if **UPGRADE_DB** env is set, the "airflow upgradedb" command will be executed.
+2. if **UPGRADE_DB** env is set, the "airflow upgradedb" command will be executed.
 
 The **build argument table** is provided above. Checkout the [Dockerfile](Dockerfile)
 to understand their behavior.
@@ -147,14 +146,15 @@ the **Airflow** hands-on. Thanks to Matthieu "Puckel_" Roisil
 # Backlog
 [-> Outline](#outline)
 
+- [ ] No hardcoded AIRFLOW_HOME (env files and build arguments)
+
 - [ ] Decouple from PostgreSQL. It should get by SQLite and SequentialExecutor by default
 
 - [ ] Provide an easier way to turn-off the encryption (AIRFLOW__CORE__FERNET_KEY).
 
 - [ ] CI/CD
-    - [ ] Simple build with tests is passing
-    - [ ] Tests are passing
-    - [ ] Coverage is collected
+    - [X] Simple build with passing tests
+    - [X] Tests are passing
     - [ ] More complex build with dependencies and other args is passing
     - [ ] The code is deployed into Docker Hub
 

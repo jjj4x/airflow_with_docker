@@ -13,22 +13,46 @@ branches:
 language: python
 jobs:
   include:
-    - name: 'Build Image'
-      stage: build
-      script: docker-compose -f docker-compose.sample.yml build
+    - stage: Build
+      name: 'Build Main Image'
+      script: travis_wait 40 docker-compose -f docker-compose.sample.yml build
 
-    - name: 'Build Test Image'
-      stage: build
-      script: docker-compose -f docker-compose.test.yml build
+    - stage: Build
+      name: 'Build Test Image'
+      script: travis_wait 40 docker-compose -f docker-compose.test.yml build
 
-    - name: 'Test'
-      stage: test
+    - stage: Build
+      name: 'Build Image and Test Build Arguments'
+      script: >
+        docker build
+          -t jjjax/airflow-docker-light-test-build-args
+          -f Dockerfile
+          --build-arg AIRFLOW_VERSION=1.10.7
+          --build-arg AIRFLOW_HOME=/airflow
+          --build-arg AIRFLOW__CORE__FERNET_KEY=123
+          --build-arg AIRFLOW_DEPS=""
+          --build-arg PYTHON_DEPS=src/requirements.test.txt
+          --build-arg LINUX_DEPS=bash,zsh
+          --build-arg TIMEZONE=Europe/Moscow
+          .
+
+    - stage: Test
+      name: 'Test with Test Image'
       script:
         - docker-compose -f docker-compose.test.yml run --rm airflow_tests
         - docker-compose -f docker-compose.test.yml down
 
-    - name: 'Deploy'
-      stage: deploy
-      script: echo Deployed
+    - stage: Test
+      name: 'Test Build Arguments'
+      script: >
+        docker run --rm
+          jjjax/airflow-docker-light-test-build-args
+          airflow upgradedb
+
+    - stage: Deploy
+      name: 'Deploy Main Image'
+      script: echo ''
+      on:
+        branch: master
 
 python: 3.7

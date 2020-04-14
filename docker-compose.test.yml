@@ -28,9 +28,9 @@ services:
       - airflow_tests_net
     environment:
       UPGRADE_DB: "true"
-      SLEEP: 2
     env_file:
       - src/env_defaults
+    restart: on-failure
     command: airflow scheduler
 
   airflow_tests:
@@ -43,10 +43,9 @@ services:
       - ./dags:/opt/airflow/dags
     networks:
       - airflow_tests_net
-    environment:
-      SLEEP: 6
     env_file:
       - src/env_defaults
+    restart: on-failure
     command: pytest -c /tests/pytest.ini -s -v
 
 volumes:
