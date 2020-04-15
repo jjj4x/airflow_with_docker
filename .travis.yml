@@ -23,18 +23,19 @@ jobs:
 
     - stage: Build
       name: 'Build Image and Test Build Arguments'
-      script: >
-        docker build
-          -t jjjax/airflow-docker-light-test-build-args
-          -f Dockerfile
-          --build-arg AIRFLOW_VERSION=1.10.7
-          --build-arg AIRFLOW_HOME=/airflow
-          --build-arg AIRFLOW__CORE__FERNET_KEY=123
-          --build-arg AIRFLOW_DEPS=""
-          --build-arg PYTHON_DEPS=src/requirements.test.txt
-          --build-arg LINUX_DEPS=bash,zsh
-          --build-arg TIMEZONE=Europe/Moscow
-          .
+      script:
+        - >
+          docker build
+            -t jjjax/airflow-docker-light-test-build-args
+            -f Dockerfile
+            --build-arg AIRFLOW_VERSION=1.10.7
+            --build-arg AIRFLOW_HOME=/airflow
+            --build-arg AIRFLOW__CORE__FERNET_KEY=123
+            --build-arg AIRFLOW_DEPS=""
+            --build-arg PYTHON_DEPS=src/requirements.test.txt
+            --build-arg LINUX_DEPS=bash,zsh
+            --build-arg TIMEZONE=Europe/Moscow
+            .
 
     - stage: Test
       name: 'Test with Test Image'
@@ -44,10 +45,11 @@ jobs:
 
     - stage: Test
       name: 'Test Build Arguments'
-      script: >
-        docker run --rm
-          jjjax/airflow-docker-light-test-build-args
-          airflow upgradedb
+      script:
+        - >
+          docker run --rm
+            jjjax/airflow-docker-light-test-build-args
+            airflow upgradedb
 
     - stage: Deploy
       name: 'Deploy Main Image'
