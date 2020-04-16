@@ -15,8 +15,7 @@ jobs:
   include:
     - stage: Build
       name: 'Build Image and Test Build Arguments'
-      script: |
-        docker build \
+      script: docker build \
           -t jjjax/airflow-docker-light-test-build-args \
           -f Dockerfile \
           --build-arg AIRFLOW_VERSION=1.10.7 \
@@ -44,8 +43,7 @@ jobs:
 
     - stage: Test
       name: 'Test Build Arguments'
-      script: |
-        docker run --rm \
+      script: docker run --rm \
           jjjax/airflow-docker-light-test-build-args \
           airflow upgradedb
 
