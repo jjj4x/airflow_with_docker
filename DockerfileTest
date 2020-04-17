@@ -1,0 +1,21 @@
+FROM python:3.7-alpine
+
+ARG AN_ARG=""
+
+ENV \
+    AN_ENV="${AN_ARG}_ENV" \
+    TIMEZONE="UTC"
+
+RUN \
+    echo "**************************SETUP TIMEZONE**************************" \
+    && apk --no-cache add tzdata \
+    && cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+    && echo "${TIMEZONE}" > /etc/timezone \
+    && apk del tzdata \
+    && mkdir -p /usr/share/zoneinfo/${TIMEZONE} \
+    && rm -r /usr/share/zoneinfo/${TIMEZONE} \
+    && cp /etc/localtime /usr/share/zoneinfo/${TIMEZONE}
+
+COPY src/entrypoint.sh /
+
+WORKDIR "/"
