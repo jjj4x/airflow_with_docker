@@ -75,7 +75,7 @@ docker-compose run
 | AIRFLOW__CORE__FERNET_KEY | ""                          | If provided, the entrypoint.sh will use the value as is; else, the value from ${AIRFLOW_HOME}/fernet.key will be used.
 | AIRFLOW_DEPS              | ""                          | Provided as "mysql,gcp,hdfs"
 | PYTHON_DEPS               | src/requirements.sample.txt | The default file is empty; you may put a custom file into src/ and it will be installed with pip
-| LINUX_DEPS                | bash                        | Provided as "bash,gcc,make"
+| LINUX_DEPS                | bash                        | Provided as "bash gcc make"
 | TIMEZONE                  | UTC                         | For example, "Europe/Moscow"
 
 
