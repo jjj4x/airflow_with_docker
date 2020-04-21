@@ -25,8 +25,8 @@ jobs:
     - stage: Build and Test
       name: 'Build Image and Test Build Arguments'
       script:
-        - travis_wait 40 docker build -t jjjax/airflow-docker-light-test-build-args -f Dockerfile --build-arg AIRFLOW_VERSION=1.10.7 --build-arg AIRFLOW_HOME=/airflow --build-arg AIRFLOW__CORE__FERNET_KEY=123 --build-arg AIRFLOW_DEPS="" --build-arg PYTHON_DEPS=requirements.test.txt --build-arg LINUX_DEPS="bash zsh" --build-arg TIMEZONE=Europe/Moscow .
-        - docker run --rm jjjax/airflow-docker-light-test-build-args airflow upgradedb
+        - travis_wait 40 docker build -t jjjax/airflow-docker-light-test-build-args -f Dockerfile --build-arg AIRFLOW_VERSION=1.10.8 --build-arg AIRFLOW_HOME=/airflow --build-arg AIRFLOW__CORE__FERNET_KEY=123 --build-arg AIRFLOW_DEPS="" --build-arg PYTHON_DEPS=requirements.test.txt --build-arg LINUX_DEPS="bash zsh" --build-arg TIMEZONE=Europe/Moscow .
+        - docker run --rm jjjax/airflow-docker-light-test-build-args airflow --version
 
     - stage: Build and Test
       name: 'Build Test Image'
