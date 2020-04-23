@@ -50,7 +50,7 @@ jobs:
     - stage: Deploy Production
       name: 'Deploy Production Image'
       workspaces:
-        use: production-build.tar
+        use: production-build
       script:
         - docker load < production-build.tar
         - docker tag jjjax/airflow-docker-light:latest jjjax/airflow-docker-light:${AIRFLOW_VERSION}
