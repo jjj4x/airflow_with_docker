@@ -152,10 +152,12 @@ the **Airflow** hands-on. Thanks to Matthieu "Puckel_" Roisil
 
 - [ ] Provide an easier way to turn-off the encryption (AIRFLOW__CORE__FERNET_KEY).
 
-- [ ] CI/CD
-    - [X] Simple build with passing tests
-    - [X] Tests are passing
-    - [ ] More complex build with dependencies and other args is passing
-    - [ ] The code is deployed into Docker Hub
-
 - [ ] Ship
+    - Rename and fix minor errors
+    - Check branches behavior
+    - Create open project on docker hub
+    - Mirror readme on docker hub
+    - Tokens and etc?
+    - Create github repo and think about release policy
+    - Re-initialize the repo
+    - Ship

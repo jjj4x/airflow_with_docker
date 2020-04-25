@@ -7,8 +7,9 @@ services:
   - docker
 
 env:
-  - AIRFLOW_VERSION=1.10.9
-  - AIRFLOW_REGRESS_VERSION=1.10.5
+  global:
+    - AIRFLOW_VERSION=1.10.9
+    - AIRFLOW_REGRESS_VERSION=1.10.5
 
 branches:
   only:
