@@ -153,11 +153,11 @@ the **Airflow** hands-on. Thanks to Matthieu "Puckel_" Roisil
 - [ ] Provide an easier way to turn-off the encryption (AIRFLOW__CORE__FERNET_KEY).
 
 - [ ] Ship
-    - Rename and fix minor errors
-    - Check branches behavior
-    - Create open project on docker hub
-    - Mirror readme on docker hub
-    - Tokens and etc?
-    - Create github repo and think about release policy
-    - Re-initialize the repo
-    - Ship
+    - [ ] Rename and fix minor errors
+    - [X] Check branches behavior
+    - [ ] Create open project on docker hub
+    - [ ] Mirror readme on docker hub
+    - [ ] Tokens and etc?
+    - [ ] Create github repo and think about release policy
+    - [ ] Re-initialize the repo
+    - [ ] Ship
