@@ -2,6 +2,8 @@
 
 A simple **Apache Airflow** \[Alpine Linux\] **Docker** image with as little magic as possible.
 
+[![Build Status](https://travis-ci.com/jjj4x/airflow_with_docker.svg?token=mxGSCc8mjz3aBtLhrCqX&branch=master)](https://travis-ci.com/jjj4x/airflow_with_docker)
+
 
 # Outline
 
@@ -14,6 +16,7 @@ A simple **Apache Airflow** \[Alpine Linux\] **Docker** image with as little mag
   * [Development and Exploration](#development-and-exploration)
 * [Authors](#authors)
 * [Backlog](#backlog)
+
 
 # License
 [-> Outline](#outline)
