@@ -60,3 +60,9 @@ jobs:
         - docker push jjjax/airflow-docker-light:${AIRFLOW_VERSION}
       on:
         branch: master
+
+notifications:
+  email:
+    if: branch = master
+    on_success: never
+    on_failure: always
