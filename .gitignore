@@ -147,3 +147,6 @@ dmypy.json
 src/media
 src/settings/dev.py
 src/urls/dev.py
+
+# Local stuff
+docker-compose.yml
