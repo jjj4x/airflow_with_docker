@@ -55,7 +55,6 @@ jobs:
         use: production-build
       script:
         - docker load < production-build.tar
-        - docker tag jjjax/airflow-docker-light:latest jjjax/airflow-docker-light:${AIRFLOW_VERSION}
         - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
         - docker push jjjax/airflow-docker-light:${AIRFLOW_VERSION}
       on:
