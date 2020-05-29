@@ -54,6 +54,7 @@ RUN \
     && pip install --no-cache-dir -r "${AIRFLOW_HOME}/${PYTHON_DEPS}" \
     && pip install --no-cache-dir \
         apache-airflow[crypto,postgres${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
+    && pip uninstall -y SQLAlchemy && pip install --no-cache-dir SQLAlchemy==1.3.15 \
     && echo "**********************CLEANUP DEPENDENCES**********************" \
     && apk del build-deps \
     && rm -rf /root/.cache/* /tmp/* /var/tmp/* \
